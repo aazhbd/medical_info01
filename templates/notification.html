@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#setable').dataTable();
+    
+} );
+		
+</script>
+
+{% if allps %}
+	<table cellpadding="0" cellspacing="0" border="0" class="display" width="100%" id="setable">
+		<thead>
+			<tr>
+				<th>Patient ID</th>
+				<th>Name</th>
+				<th>Date of registration</th>
+				<th>Address</th>
+				<th>Problems</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Patient ID</th>
+				<th>Name</th>
+				<th>Date of registration</th>
+				<th>Address</th>
+				<th>Problems</th>
+			</tr>
+		</tfoot>
+		<tbody>
+	{% for p in allps %}
+		{% for q in p %}
+		<tr>
+			<td>{{q.id}}</td>
+			<td>{{q.name}}</td>
+			<td>{{q.date_registration}}</td>
+			<td>{{q.address}}</td>
+			<td>Hemoglobin:7g/dL </td>
+		allus
+		</tr>
+		{% endfor %}
+	{% endfor %}
+		
+	</tbody>
+	</table>
+	{% else %}
+		<p>There is no data</p>
+	{% endif %}
+
+{% endblock %}

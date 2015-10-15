@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/presentmedicalhistory/add/">Add Present Medical History Info</a></div>
+
+<div class="allpatients">
+	{% if premh %}
+	
+	{% for p in premh %}
+	    <p><span style="font-weight:bold;"> Present Medical History : {{a.name}}</span></p>
+	    <p>{% if p.tuberculosis %} Tuberculosis{% if p.tuberculosis %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}  {% endif %}</p>
+		<p>{% if p.heart_disease %} Heart Disease<img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.chronical_renal_disease %} Chronical Renal Disease <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.epilepsy %} Epilepsy <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.diabetes_melitus %} Diabetes Melitus <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.sexually_transmitted_infection %} Sexually Transmitted Infection <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.hepatitis %} Hepatitis <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.malaria %} Malaria {% endif %}</p>
+		<p>{% if p.sickle_cell_trait %} Sickle Cell Trait  <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.rhesus_d_antibodies %} Rhesus(D)Antibodies <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.HIV_status_if_known %}  HIV(status if known) <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.kidney_disease %} Kidney Disease <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.liver_problems %} Liver Problems <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.hypertension %} Hypertension<img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.urinary_tract_surgeries %} Urinary Tract Surgeries <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.seizures %} Seizures <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.pelvic_backinjuries %} Pelvic Back Injuries <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.haemorrhage %} Haemorrhage <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>Others : {{p.others}}</p>
+	{% endfor %}
+	
+	{% else %}
+		<p>There is no data in Present Medical History information</p>
+	{% endif %}	
+</div>
+
+<div style="float:right;"><a href="/admin/irpmemr/pastmedicalhistory/add/">Add Past Medical History Info</a></div>
+
+<div class="allpatients">
+	{% if pmh %}
+	
+	{% for p in pmh %}
+	    <p><span style="font-weight:bold;"> Past Medical History : {{a.name}}</span></p>
+	    <p>{% if p.tuberculosis %} Tuberculosis <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.heart_disease %} Heart Disease <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.chronical_renal_disease %} Chronical Renal Disease <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.epilepsy %} Epilepsy <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.diabetes_melitus %} Diabetes Melitus <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.sexually_transmitted_infection %} Sexually Transmitted Infection<img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.hepatitis %} Hepatitis <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.malaria %} Malaria <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.sickle_cell_trait %} Sickle Cell Trait <img height="20px;" src="{% get_static_prefix %}/images/important2.png" />{% endif %}</p>
+		<p>{% if p.rhesus_d_antibodies %} Rhesus(D)Antibodies <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.HIV_status_if_known %}  HIV(status if known)  <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.kidney_disease %} Kidney Disease <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.liver_problems %} Liver Problems <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.hypertension %} Hypertension <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.urinary_tract_surgeries %} Urinary Tract Surgeries <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.seizures %} Seizures <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.pelvic_backinjuries %} Pelvic Back Injuries <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.haemorrhage %} Haemorrhage <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>Others : {{p.others}}</p>
+	{% endfor %}
+	
+	{% else %}
+		<p>There is no data in Past Medical History information</p>
+	{% endif %}	
+</div>
+
+
+
+<div style="float:right;"><a href="/admin/irpmemr/familymedicalhistory/add/">Add Family Medical History Info</a></div>
+
+<div class="allpatients">
+	{% if fmh %}
+	
+	{% for p in fmh %}
+	    <p><span style="font-weight:bold;"> Family Medical History : </span></p>
+	    <p>{% if p.tuberculosis %} Tuberculosis <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.heart_disease %} Heart Disease <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.chronical_renal_disease %} Chronical Renal Disease <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.epilepsy %} Epilepsy <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.diabetes_melitus %} Diabetes Melitus <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.sexually_transmitted_infection %} Sexually Transmitted Infection <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.hepatitis %} Hepatitis <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.malaria %} Malaria <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.sickle_cell_trait %} Sickle Cell Trait <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.rhesus_d_antibodies %} Rhesus(D)Antibodies <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.HIV_status_if_known %}  HIV(status if known) <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.kidney_disease %} Kidney Disease <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.liver_problems %} Liver Problems <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.hypertension %} Hypertension <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.urinary_tract_surgeries %} Urinary Tract Surgeries <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.seizures %} Seizures <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.pelvic_backinjuries %} Pelvic Back Injuries <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>{% if p.haemorrhage %} Haemorrhage <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>Others : {{p.others}}</p>
+	{% endfor %}
+	
+	{% else %}
+		<p>There is no data in Family Medical History information</p>
+	{% endif %}	
+</div>
+
+<div style="float:right;"><a href="/admin/irpmemr/menstrualhistory/add/">Add Menstrual History Info</a></div>
+
+<div class="allpatients">
+	{% if menh %}
+	
+	{% for b in menh %}
+		<p><span style="font-weight:bold;"> Menstrual History : </span></p>
+		<p>Day of visit: {{b.day_of_visit}}</p>
+		<p>Menstrual cycle: {{b.menstrual_cycle}}</p>
+		<p>Regularity: {{b.regularity}}</p>
+		<p>Last Menstrual Periods: {{b.last_menstrual_periods}}</p>
+		<p>Previous Contraception: {{b.previous_contraception}}</p>
+		<p>Expected Date Of Delivery: {{b.expected_date_of_delivery}}</p>
+		<p>POA by LMP: {{b.poa_by_lmp}}</p>
+	{% endfor %}
+	
+	{% else %}
+		<p>There is no data in Menstrual History information</p>
+	{% endif %}	
+	
+</div>
+
+
+
+<div style="float:right;"><a href="/admin/irpmemr/obstetrichistory/add/">Add Obsteric History Info</a></div>
+<table width="100%">
+		<tr>
+			<th>Check If You Have Been Pregnant</th>
+			<th>Check If You Have Been Miscarriages</th>
+			
+		</tr>
+	{% for p in oh %}
+		<tr>
+			<td>{{p.check_if_you_have_been_pregnant}}</td>
+			<td>{% if p.check_if_you_have_been_miscarriages %} <img height="20px;" src="{% get_static_prefix %}/images/tick.png" /> {% else %} <img height="20px;" src="{% get_static_prefix %}/images/edit-delete.png" /> {% endif %}</td>
+			
+		</tr>	
+	{% endfor %}
+	</table>
+	
+<div style="float:none;"><a href="/admin/irpmemr/previousobstetrichistory/add">List of previous obstetric history</a></div>
+{% if preoh %}
+	<table cellpadding="0" cellspacing="0" border="0" class="display" width="100%" id="setable">
+		<thead>
+			<tr>
+				<th>Year</th>
+				<th>Sex</th>
+				<th>Weight</th>
+				<th>Types of delivery</th>
+				<th>Length of pregnancy</th>
+				<th>Problems</th>
+				<th>Name Of Baby</th>
+				<th>Age Of Baby</th>
+				<th>Periods Of Exclusive Feeding</th>
+				<th>Obstetrical Operation</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+		<tbody>
+	{% for p in preoh %}
+		<tr>
+			<td>{{p.year}}</td>
+			<td>{{p.sex}}</td>
+			<td>{{p.birth_weight}}</td>
+			<td>{{p.types_of_delivery}}</td>
+			<td>{{p.length_of_pregnancy}}</td>
+			<td>{{p.problems}}  {% if p.problems = 'Preterm Labor' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}
+								{% if p.problems = 'Diabetes' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}
+								{% if p.problems = 'High Blood Pressure' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}
+								{% if p.problems = 'Thrombosis' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}
+								{% if p.problems = 'Embolus' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}
+								{% if p.problems = 'Hypertension' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}
+								{% if p.problems = 'Pre-Eclampsia' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}
+								{% if p.problems = 'Eclampsia' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</td>
+			<td>{{p.name_of_baby}}</td>
+			<td>{{p.age_of_baby}}</td>
+			<td>{{p.periods_of_exclusive_feeding}}</td>
+			<td>{{p.obstetrical_operation}}{% if p.obstetrical_operation = 'Forceps' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}{% if p.obstetrical_operation = 'Caesarian Section' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}{% if p.obstetrical_operation = 'Vacuum Extraction' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}{% if p.obstetrical_operation = 'Manual instrumental help in vaginal breech delivery' %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</td>		
+		</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+	{% else %}
+		<p>There is no data in list previous obstetric history</p>
+	{% endif %}
+{% endblock %}

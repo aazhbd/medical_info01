@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/ultrasoundscanning/add/">Add Ultrasound scanning</a></div>
+
+
+
+<div class="allpatients">
+	{% if usscan %}
+	
+	{% for p in usscan %}
+		<p>Name: {{p.pid}}</p>
+		<p>Date: {{p.date}}</p>
+		<p>Gestation Age : {{p.gestation_age}}</p>
+		<p>Name Examiner : {{p.name_examiner}}</p>
+		<p>Saved Ultrasound Image : <img src="{% get_static_prefix %}/{{p.saved_ultrasound_image}}" height="100" /></p>
+		<p>CRL : {{p.CRL}} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} <img height="20px;" src="{% get_static_prefix %}/images/tick.png" /> {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %} {% if p.CRL > 4 and p.gestation_age == 6.1 %} Danger {% endif %}</p>
+		<p>BPD : {{p.BPD}}</p>
+		<p>FL : {{p.FL}}</p>
+		<p>HC : {{p.HC}}</p>
+		<p>AC : {{p.AC}}</p>
+		<p>Amount Of Amniotic Fluid : {{p.amount_of_amniotic_fluid}}{% if p.amount_of_amniotic_fluid > 30 %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>Position Of The Placenta : {{p.position_of_the_placenta}}</p>
+		<p>Position Of The Baby : {{p.position_of_the_baby}}</p>
+	{% endfor %}
+	
+	{% else %}
+		<p>No ultrasound scanning record available</p>
+	{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% load i18n %}
+
+<div id="form-wrapper">
+    {% include "_inner_message.html" %}
+    <form action="" method="POST" id="form-upload" enctype="multipart/form-data">
+        <table class="table table-hover table-normal">
+            <tr>
+                <td></td>
+                <td id="img-td">{% if image %}<img src="{{ image }}" alt="Ultrasound Scan Image" class="ultrasound-img" width="200" />{% endif %}</td>
+            </tr>
+            <tr>
+                <td><label class="control-label" for="image_file">Upload Image <span class="red"> *</span></label></td>
+                <td><input type="file" name="image_file" id="image_file" onchange="fileSelected();" />
+                    <div id="img-error" class="control-group error" style="display: none;">
+                        <span class="help-inline"><b>Invalid image</b></span>
+                    </div>
+                    <div id="no-img-error" class="control-group error" style="display: none;">
+                        <span class="help-inline"><b>No image selected</b></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="text-center">
+                    <button type="submit" class="btn btn-inverse">{% trans "Upload" %} &nbsp;<i class="icon-ok icon-white"></i></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form action="" method="POST" id="form-base" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table table-hover table-normal">
+            {% for f in form %}
+                {% include '_table_horizontal_field.html' with field=f %}
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-primary" id="back-scan"><i class="icon-step-backward icon-white"></i> &nbsp;&nbsp;&nbsp;{% trans "Cancel" %}</button>
+                    <button type="submit" class="btn btn-inverse">{% trans "Save" %} &nbsp;<i class="icon-ok icon-white"></i></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.simple-dtpicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if ($('#id_temp_img').val() != '') {
+                set_temp_img($('#id_temp_img').val());
+            };
+        });
+
+        $('#form-base').submit(function(e) {
+            e.preventDefault();
+            {% if us_id %}
+            $.post("{% url 'ultrasound_scanning_view' patient_id us_id %}", $("#form-base").serialize(), function(data) {
+                $('#form-wrapper').html(data);
+            });
+            {% else %}
+            $.post("{% url 'ultrasound_scanning_add' patient_id %}", $("#form-base").serialize(), function(data) {
+                $('#form-wrapper').html(data);
+            });
+            {% endif %}
+        });
+        $('#back-scan').click(function(e) {
+            e.preventDefault();
+            $('#form-wrapper').load('{% url "ultrasound_scanning" patient_id %}');
+        });
+        $(function(){
+            $('*[class=datepicker]').appendDtpicker({"closeOnSelected": true, "dateOnly": true});
+        });
+
+        $('#form-upload').submit(function(e) {
+            e.preventDefault();
+            upload(document.getElementById('image_file'), '{% url "ultrasound_upload_image" %}');
+        });
+
+        function upload(field, upload_url) {
+            if (field.files.length == 0) {
+                $('#no-img-error').show();
+                return;
+            }
+            file = field.files[0];
+            var formdata = new FormData();
+            formdata.append('file_upload', file);
+            formdata.append('scan', {% if scan %}{{ scan.id }}{% else %}0{% endif %});
+            $.ajax({
+                url: upload_url,
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function(data) {set_temp_img(data)}
+            });
+        };
+
+        function set_temp_img(data) {
+            $('#img-td').load('/patient/ultrasound-scanning/img/'+ data +'/');
+            $('#id_temp_img').val(data);
+        };
+
+        function fileSelected() {
+            $('#img-error').hide();
+            $('#no-img-error').hide();
+
+            // get selected file element
+            var oFile = document.getElementById('image_file').files[0];
+
+            // filter for image files
+            var rFilter = /^(image\/jpg|image\/jpeg|image\/png)$/i;
+            if (! rFilter.test(oFile.type)) {
+                $('#img-error').show();
+                return;
+            }
+        };
+    </script>
+</div>
+
+

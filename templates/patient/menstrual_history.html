@@ -1,0 +1,81 @@
+{% load i18n %}
+
+<div id="form-wrapper">
+    {% include "_inner_message.html" %}
+    <form action="" method="POST" id="form-base">
+        {% csrf_token %}
+        <table class="table table-hover table-striped">
+            <tr>
+                <td {% if medical_tab == 'fmh' %}class="medical-active"{% endif %}><a class="medical-link" href="{% url 'medical_history' patient_id %}">Family Medical History</a></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td {% if medical_tab == 'pah' %}class="medical-active"{% endif %}><a class="medical-link" href="{% url 'past_medical_history' patient_id %}">Past Medical History</a></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td {% if medical_tab == 'meh' %}class="medical-active"{% endif %}>Menstrual History</td>
+                <td>
+                    <table class="table table-normal">
+                        {% for f in form %}
+                            <tr>
+                                <td><label for="id_{{ f.name }}">{{ f.label }}</label></td>
+                                <td>{{ f }}
+                                    <div class="control-group{% if f.errors %} error{% endif %}">
+                                        {% if f.errors %}
+                                            <span class="help-inline">{{ f.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td class="text-center">
+                                <button type="submit" class="btn btn-inverse">{% trans "Save" %} &nbsp;<i class="icon-ok icon-white"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td {% if medical_tab == 'obh' %}class="medical-active"{% endif %}><a class="medical-link" href="{% url 'obstetric_history' patient_id %}">Obstetric History</a></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td {% if medical_tab == 'prh' %}class="medical-active"{% endif %}><a class="medical-link" href="{% url 'present_medical_history' patient_id %}">Present Medical History</a></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td {% if medical_tab == 'gyh' %}class="medical-active"{% endif %}><a class="medical-link" href="{% url 'gynaecological_history' patient_id %}">Gynaecological History</a></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td {% if medical_tab == 'imh' %}class="medical-active"{% endif %}><a class="medical-link" href="{% url 'immunization_history' patient_id %}">Immunization History</a></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.simple-dtpicker.js"></script>
+    <script type="text/javascript">
+        $('#form-base').submit(function(e) {
+            e.preventDefault();
+            $.post("{% url 'menstrual_history' patient_id %}", $("#form-base").serialize(), function(data) {
+                $('#form-wrapper').html(data);
+            });
+        });
+        $('*[class=datepicker]').appendDtpicker({"closeOnSelected": true, "dateOnly": true});
+        $('.medical-link').click(function(e){
+            e.preventDefault();
+            $('#form-wrapper').load(this.getAttribute('href'));
+        });
+    </script>
+</div>
+
+

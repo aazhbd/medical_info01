@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div id="form-wrapper">
+    {% include "_inner_message.html" %}
+    <table class="table table-hover table-normal">
+        {% for prs in prescriptions %}
+            <tr>
+                <td></td>
+                <td><a href="{{ prs.get_absolute_url }}" class="prs-href">{{ prs.date }}</a></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-primary" id="add-prs">{% trans "Add" %} &nbsp;&nbsp;&nbsp;<i class="icon-play icon-white"></i></button>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#add-prs').click(function(e) {
+            e.preventDefault();
+            $('#form-wrapper').load('{% url "prescription_add" patient_id %}');
+        });
+        $('.prs-href').click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $('#form-wrapper').load(url);
+        });
+    </script>
+</div>
+

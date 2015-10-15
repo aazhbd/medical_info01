@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Notification' %}{% endblock title %}
+
+{% block content %}
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="page-header mt0">
+                        <h2>{% trans 'Notification' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <table class="table table-bordered table-hover table-striped">
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Problems</th>
+                        </tr>
+                        {% for p in problems %}
+                            <tr>
+                                <td><a href="{{ p.0.get_absolute_url }}">{{ p.0 }}</a></td>
+                                <td>{% for prob in p.1 %}
+                                        {{ prob }}<br/ >
+                                    {% endfor %}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

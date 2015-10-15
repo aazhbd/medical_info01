@@ -1,0 +1,123 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+    <head>
+        <meta charset="utf-8">
+	   {% comment %}<script type="text/javascript" src="http://cdn.dev.skype.com/uri/skype-uri.js"></script>{% endcomment %}
+        <title>{% block title %}{% endblock title %} | {{ site.name }}</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block meta %}
+        {% endblock meta %}
+        <meta name="author" content="Azri Anuar">
+
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css//jquery-ui.css">
+        <link type="text/css" href="{{ STATIC_URL }}css/jquery.simple-dtpicker.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen, projection">
+        {% block css %}{% endblock css %}
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="shortcut icon" href="{{ STATIC_URL }}ico/favicon.ico">
+    </head>
+    <body>
+        {% block header %}
+        <section id="header">
+            <div class="container">
+
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="pull-left" style="padding-top:1px;">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </span>
+                            <span class="pull-right" style="color:#555; font-size:12px; margin-left:15px; text-shadow:none;">{% trans 'Menu' %}</span>
+                        </button>
+
+                        <div class="row">
+                            <div class="span2">
+                                <a class="brand" href="{% url 'home' %}">
+                                    <img src="{{ STATIC_URL }}img/logo-irpm.png" alt="{{ site.name }}" />
+                                </a>
+                            </div>
+                            <div class="span10 web-menu">
+                                <div class="nav-collapse collapse pull-left">
+                                    <ul class="nav">
+                                        {% include '_menu.html' %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mobile-menu">
+                            <div class="span12">
+                                <div class="nav-collapse collapse">
+                                    <ul class="nav">
+                                        {% include '_menu.html' %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock header %}
+
+        {% block messages %}
+            {% if messages %}
+                <section id="messages">
+                    <div class="container">
+                        <div class="row">
+                            <div class="span12">
+                                {% for message in messages %}
+                                    <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}error{% endif %}">
+                                        <a class="close" data-dismiss="alert" href="#">×</a>
+                                        {{ message|safe }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+        {% endblock messages %}
+
+        {% block content %}{% endblock content %}
+
+        {% block footer %}
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="span12 text-center">
+                        &copy; {{ CURRENT_YEAR }} | <a href="{% url 'home' %}">{{ site.name }}</a><br>
+                        <!-- Developed by LEHFO -->
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% endblock footer %}
+
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+            });
+        </script>
+        {% block bottom_javascript %}
+            <script type="text/javascript">
+                $(document).ready(function() {
+
+                });
+            </script>
+        {% endblock bottom_javascript %}
+    </body>
+</html>

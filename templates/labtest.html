@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/laboratorytest/add/">Add Lab Test</a></div>
+
+
+
+<div class="allpatients">
+	{% if labtst %}
+	
+	{% for p in labtst %}
+		<p>Date : {{p.date}}</p>
+		<p>Urinalysis: {{p.urinalysis}}</p>
+		<p>Serological Test For Syphilis: {{p.serological_test_for_syphilis}}</p>
+		<p>Blood Group : {{p.blood_group}}</p>
+		<p>Hemoglobin : {{p.hemoglobin}}{% if p.hemoglobin < 11 %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		
+		
+	{% endfor %}
+	
+	{% else %}
+		<p>There is no lab test</p>
+	{% endif %}
+</div>
+
+{% endblock %}

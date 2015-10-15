@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/physicalexamination/add/">Add Physical Examination </a></div>
+{% if phyexm %}
+	<table cellpadding="0" cellspacing="0" border="0" class="display" width="100%" id="setable">
+		<thead>
+			<tr>
+				<th>No. of Visit</th>
+				<th>Sign Anaemia</th>
+				<th>Weight</th>
+				<th>Height</th>
+				<th>Blood Pressure</th>
+				<th>Chest And Heart Auscultation</th>
+				<th>Uterine Height</th>
+				<th>Vaginal Examination</th>
+				
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+		<tbody>
+	{% for p in phyexm %}
+		<tr>
+			<td>{{p.visit}}</td>
+			<td>	
+			{% if sgnaemia %}
+				{% for s in sgnaemia %}
+	    		<p>Pale Complexion : {{s.pale_complexion}}</p>
+	    		<p>Fingernails : {{s.fingernails}}</p>
+	    		<p>Conjunctiva : {{s.Conjunctiva}}</p>
+	    		<p>Oral Mucosa : {{s.oral_mucosa}}</p>
+	   			<p>Tip Of Tongue : {{s.tip_of_tongue}}</p>
+	    		<p>Shortness Of Breath : {{s.shortness_of_breath}}</p>
+	    		<p>Others : {{s.others_please_state}}</p>
+	{% endfor %}
+	
+	{% else %}
+		<p>No information</p>
+	{% endif %}		
+		</td>
+			<td>{{p.weight}}</td>
+			<td>{{p.height}}</td>
+			<td>{{p.blood_pressure}}</td>
+			<td>{{p.chest_and_heart_auscultation}}</td>
+			<td>{{p.uterine_height}}</td>
+			<td>{{p.vaginal_examination}}</td>
+	{% endfor %}
+	</tbody>
+	</table>
+	{% else %}
+		<p>No information</p>
+	{% endif %}
+{% endblock %}

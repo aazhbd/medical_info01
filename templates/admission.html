@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#setable').dataTable();
+    
+} );
+		
+</script>
+
+<div style="float:none;"><a href="/admin/irpmemr/patientadmission/add/">Add Patient Admission</a></div>
+{% if pa %}
+	<table cellpadding="0" cellspacing="0" border="0" class="display" width="100%" id="setable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>First Visit</th>
+				<th>Second Visit</th>
+				<th>Third Visit</th>
+				<th>Fourth Visit</th>
+				<th>Other Visit</th>
+				<th>Hospital Name</th>
+				<th>Date Of Admission</th>
+				<th>Date Of Discharge</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Name</th>
+				<th>First Visit</th>
+				<th>Second Visit</th>
+				<th>Third Visit</th>
+				<th>Fourth Visit</th>
+				<th>Other Visit</th>
+				<th>Hospital Name</th>
+				<th>Date Of Admission</th>
+				<th>Date Of Discharge</th>
+			</tr>
+		</tfoot>
+		<tbody>
+	{% for p in pa %}
+		<tr>
+			<td>{{p.pid}}</td>
+			<td>{{p.first_visit}}</td>
+			<td>{{p.second_visit}}</td>
+			<td>{{p.third_visit}}</td>
+			<td>{{p.fourth_visit}}</td>
+			<td>{{p.other_visit}}</td>
+			<td>{{p.hospital_name}}</td>
+			<td>{{p.date_of_admission}}</td>
+			<td>{{p.date_of_discharge}}</td>
+			
+		</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+	{% else %}
+		<p>There is no data</p>
+	{% endif %}
+
+{% endblock %}

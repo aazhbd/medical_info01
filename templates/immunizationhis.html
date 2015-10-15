@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/immunizationhistory/add/">Add Immunization History</a></div>
+
+<div class="allpatients">
+	{% if immun %}
+	{% for p in immun %}
+		<p>Name: {{p.pid}}</p>
+		<p>Vaccination: {{p.vaccination}}</p>
+		<p>First Injection: {{p.tetanus_toxoid1}}</p>
+		<p>Second Injection : {{p.tetanus_toxoid2}}</p>
+		<p>Third Injection : {{p.tetanus_toxoid3}}</p>
+	{% endfor %}
+	
+	{% else %}
+		<p>No immunization record available</p>
+	{% endif %}
+</div>
+
+{% endblock %}

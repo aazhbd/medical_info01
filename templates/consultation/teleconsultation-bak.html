@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Teleconsultation' %}{% endblock title %}
+
+{% block content %}
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="page-header mt0">
+                        <h2>{% trans 'Teleconsultation:' %} {{ specialist.get_fullname }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <video id="webcam" autoplay style="width:320px; height:200px; border:1px solid black;"></video>
+                    {% comment %}<button onclick="startVideo1();">Start Video</button>{% endcomment %}
+                    <button onclick="stopVideo1();">Stop Call</button>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block bottom_javascript %}
+    {% comment %}
+    <script>
+    function startVideo1() {
+      var local1 = document.getElementById("local1");
+      navigator.webkitGetUserMedia({video:true}, successCallback1);
+      function successCallback1(stream) {
+        local1.src = window.URL.createObjectURL(stream);
+      }
+    }
+    function stopVideo1() {
+      var local1 = document.getElementById("local1");
+      local1.src = "";
+    }
+    </script>
+    {% endcomment %}
+
+    {% comment %}
+    <script>
+        function startVideo1() {
+          var local1 = document.getElementById("local1");
+          navigator.webkitGetUserMedia({video:true}, successCallback1);
+          function successCallback1(stream) {
+            local1.src = window.URL.createObjectURL(stream);
+          }
+        }
+        function stopVideo1() {
+          var local1 = document.getElementById("local1");
+          local1.src = "";
+        }
+    </script>
+    {% endcomment %}
+
+    <script>
+        function onFailure(err) {
+            alert("The following error occured: " + err.name);
+        }
+        function stopVideo1() {
+            var video = document.querySelector('#webcam');
+            video.src = "";
+        }
+        jQuery(document).ready(function () {
+            var video = document.querySelector('#webcam');
+            navigator.getUserMedia = (navigator.getUserMedia ||
+                    navigator.webkitGetUserMedia ||
+                    navigator.mozGetUserMedia ||
+                    navigator.msGetUserMedia);
+            if (navigator.getUserMedia) {
+                navigator.getUserMedia
+                (
+                    { video: true },
+                    function (localMediaStream) {
+                    video.src = window.URL.createObjectURL(localMediaStream);
+
+                }, onFailure);
+            }
+            else {
+                alert('OOPS No browser Support');
+            }
+        });
+    </script>
+
+{% endblock bottom_javascript %}
+

@@ -1,0 +1,34 @@
+{% load i18n %}
+
+<div id="form-wrapper">
+    {% include "_inner_message.html" %}
+    <table class="table table-normal">
+        <tr>
+            <td>Hospital Name:</td>
+            <td>{{ admission.hospital_name }}</td>
+        </tr>
+        <tr>
+            <td>Date of admission:</td>
+            <td>{{ admission.date_of_admission }}</td>
+        </tr>
+        <tr>
+            <td>Date of discharge:</td>
+            <td>{{ admission.date_of_discharge }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-primary" id="back-visit"><i class="icon-step-backward icon-white"></i> &nbsp;&nbsp;&nbsp;{% trans "Back" %}</button>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#back-visit').click(function(e) {
+            e.preventDefault();
+            $('#form-wrapper').load('{% url "patient_visit" patient_id %}');
+        });
+    </script>
+</div>
+

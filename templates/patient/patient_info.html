@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Patient Information' %}{% endblock title %}
+
+{% block content %}
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="page-header mt0">
+                        <h2>{% trans 'Patient Information' %} - {{ patient.get_fullname.title }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="tabContainer">
+                <div class="span12">
+                    <div id="tabs">
+                      <ul>
+                        <li id="tabHeader_1">Visits</li>
+                        <li id="tabHeader_2">Basic Patient Information</li>
+                        <li id="tabHeader_3">Demographics</li>
+                        <li id="tabHeader_4">Medical History</li>
+                        <li id="tabHeader_5">Routine Check Up</li>
+                        <li id="tabHeader_6">Laboratory Test</li>
+                        <li id="tabHeader_7">Ultrasound Scanning</li>
+                        <li id="tabHeader_8">Prescription</li>
+                      </ul>
+                    </div>
+                    <div id="tabsURL">
+                        <input type="hidden" id="currentTab" value="{{ current_tab }}" />
+                        <input type="hidden" id="tabID_1" value="{% url 'patient_visit' patient_id %}" />
+                        <input type="hidden" id="tabID_2" value="{% url 'basic_patient_information' patient_id %}" />
+                        <input type="hidden" id="tabID_3" value="{% url 'additional_details' patient_id %}" />
+                        <input type="hidden" id="tabID_4" value="{% url 'medical_history' patient_id %}" />
+                        <input type="hidden" id="tabID_5" value="{% url 'routine_checkup' patient_id %}" />
+                        <input type="hidden" id="tabID_6" value="{% url 'laboratory_test' patient_id %}" />
+                        <input type="hidden" id="tabID_7" value="{% url 'ultrasound_scanning' patient_id %}" />
+                        <input type="hidden" id="tabID_8" value="{% url 'prescription' patient_id %}" />
+                    </div>
+                    <div id="tabscontent" class="box dark">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block bottom_javascript %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/tabs_old.js"></script>
+{% endblock bottom_javascript %}

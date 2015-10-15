@@ -1,0 +1,39 @@
+{% load i18n %}
+
+<div id="form-wrapper">
+    {% include "_inner_message.html" %}
+    <form action="" method="POST" id="form-base">
+        {% csrf_token %}
+        <table class="table table-hover table-normal">
+            {% for f in form %}
+                {% include '_table_horizontal_field.html' with field=f %}
+            {% endfor %}
+        </table>
+        <table class="table table-hover table-normal">
+            <tr>
+                <th colspan="2"><h2><u>Patient / Husband / Guardian</u></h2></th>
+            </tr>
+            {% for f in form2 %}
+                {% include '_table_horizontal_field.html' with field=f %}
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td class="text-center">
+                    <button type="submit" class="btn btn-inverse">{% trans "Save" %} &nbsp;<i class="icon-ok icon-white"></i></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#form-base').submit(function(e) {
+            e.preventDefault();
+            $.post("{% url 'additional_details' patient_id %}", $("#form-base").serialize(), function(data) {
+                $('#form-wrapper').html(data);
+            });
+        });
+    </script>
+</div>
+
+

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Specialist' %}{% endblock title %}
+
+{% block content %}
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="page-header mt0">
+                        <h2>{% trans 'Specialist' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <table class="table table-hover">
+                        <tr>
+                            <td>Name:</td>
+                            <td>{{ specialist.get_full_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Information:</td>
+                            <td>{{ specialist.specialist.information }}</td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td>{{ specialist.specialist.get_status_display }}</td>
+                        </tr>
+                        <tr>
+                            <td>Rate:</td>
+                            <td>{{ specialist.specialist.view_rate }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                {% comment %}
+                                {% if specialist.specialist.available %}
+                                <a class="btn btn-primary" target="_blank" href="{% url 'teleconsultation' ps_ky %}">{% trans "Call now" %}</a>
+                                {% else %}
+                                Not available
+                                {% endif %}
+                                {% endcomment %}
+                                {% if specialist.userprofile.skype_id %}
+                                    <a class="btn btn-primary" href="skype:{{ specialist.userprofile.skype_id }}?call">Call using Skype</a>
+                                    <a class="btn btn-primary" href="skype:{{ specialist.userprofile.skype_id }}?chat">Chat using Skype</a>
+                                {% else %}
+                                    <button type="button" class="btn btn-primary" disabled="disabled">No SKYPE ID</button>
+                                {% endif %}
+                                <a class="btn btn-inverse" href="{% url 'specialist' %}">{% trans "Cancel" %}</a>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

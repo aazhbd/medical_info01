@@ -1,0 +1,36 @@
+[
+{
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2014-07-06T07:07:41.351Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$10000$o4BpI7OPQl7M$e5Hdz2YGB45N4fEg20qKuH1C4TbBUcjGNC2NnfbuYV0=",
+        "email": "admin@irpm.com",
+        "date_joined": "2013-11-27T07:15:36.862Z"
+    }
+},
+{
+    "pk": 1,
+    "model": "auth.group",
+    "fields": {
+        "name": "Midwife",
+        "permissions": []
+    }
+},
+{
+    "pk": 2,
+    "model": "auth.group",
+    "fields": {
+        "name": "Specialist",
+        "permissions": []
+    }
+}
+]

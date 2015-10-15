@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="page-header mt0">
+                        <h2>{% trans 'Home Page' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <form action="" method="POST" class="pull-right">
+                        {% csrf_token %}
+                        <div class="input-append">
+                            <input class="span2" id="id_q" name="q" type="text" {% if is_search %}value={{ is_search }}{% endif %} float="left">
+                            <button type="submit" class="btn" type="button">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <table class="table table-bordered table-hover table-striped">
+                        <tr>
+                            <th>{% trans "ID" %}</th>
+                            <th>{% trans "Full Name" %}</th>
+                            <th>{% trans "Age" %}</th>
+                        </tr>
+                        {% for patient in patients %}
+                            <tr>
+                                <td><a href="{{ patient.get_absolute_url }}">{{ patient.patient_id }}</a></td>
+                                <td><a href="{{ patient.get_absolute_url }}"><i class="icon-user"></i> &nbsp;{{ patient.get_fullname }}</a></td>
+                                <td>{{ patient.get_age }}</td>
+                            </tr>
+                        {% empty %}
+                            {% if is_search %}
+                                <tr>
+                                    <td colspan="3">No results found</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                    <div class="form-actions" align="right">
+                        <button type="button" class="btn btn-primary" id="add-patient" onclick="location.href='{% url "patient_add" %}';">{% trans "Add new patient" %} &nbsp;&nbsp;&nbsp;<i class="icon-play icon-white"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

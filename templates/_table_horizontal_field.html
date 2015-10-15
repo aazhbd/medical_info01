@@ -1,0 +1,15 @@
+{% load i18n %}
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    <tr>
+        <td><label class="control-label" for="id_{{ field.name }}">{{ field.label }} {% if field.field.required %}<span class="red"> *</span>{% endif %}</label></td>
+        <td>{{ field }}
+            <div class="control-group{% if field.errors %} error{% endif %}">
+                {% if field.errors %}
+                    <span class="help-inline">{{ field.errors }}</span>
+                {% endif %}
+            </div>
+        </td>
+    </tr>
+{% endif %}

@@ -1,0 +1,48 @@
+{% load i18n %}
+
+<div id="form-wrapper">
+    {% include "_inner_message.html" %}
+    <form action="" method="POST" id="form-base">
+        {% csrf_token %}
+        <table class="table table-hover table-normal">
+            <tr>
+                <th colspan="3"><h2><u>Add Hospital Admission:</u></h2></th>
+            </tr>
+            {% for f in form %}
+                {% include '_table_horizontal_field.html' with field=f %}
+            {% endfor %}
+
+            <tr>
+                <td colspan="2"></td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-primary" id="back-visit"><i class="icon-step-backward icon-white"></i> &nbsp;&nbsp;&nbsp;{% trans "Cancel" %}</button>
+                    <button type="submit" class="btn btn-inverse" value="save">{% trans "Save" %} &nbsp;<i class="icon-ok icon-white"></i></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.simple-dtpicker.js"></script>
+    <script type="text/javascript">
+        $('#form-base').submit(function(e) {
+            e.preventDefault();
+            {% if admission_id %}
+            $.post("{% url 'patient_admission_view' patient_id admission_id %}", $("#form-base").serialize(), function(data) {
+                $('#form-wrapper').html(data);
+            });
+            {% else %}
+            $.post("{% url 'patient_admission_add' patient_id %}", $("#form-base").serialize(), function(data) {
+                $('#form-wrapper').html(data);
+            });
+            {% endif %}
+        });
+        $('#back-visit').click(function(e) {
+            e.preventDefault();
+            $('#form-wrapper').load('{% url "patient_visit" patient_id %}');
+        });
+        $(function(){
+            $('*[class=datetimepicker]').appendDtpicker({"closeOnSelected": true});
+        });
+    </script>
+</div>

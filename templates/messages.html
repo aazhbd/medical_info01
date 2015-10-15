@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div id="chatbody">
+		<div id="messagebody"></div>
+	</div>
+	
+	<div id="chatform">
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var tmp = window.location.href;
+				
+				function getMessages() {
+					$.ajax({
+						url: tmp + '/show',
+						data: {
+							rev: 'hello',
+						},
+						success: function(response, status) {
+							//alert(response);
+							var p = "";
+							for(i = 0; i < response.length; i++) {
+								p += "<p>Sender:" + response[i]['sender'] + " Receiver:" + response[i]['receiver'] + "<br/>Body:" + response[i]['body'] + "</p>"
+								$('#messagebody').html(p);
+							}
+						}
+					});
+				}
+				
+				var auto_refresh = setInterval(function() {
+					getMessages();
+				}, 5000);
+				
+				$('#button').click(function() {
+					getMessages();
+				});
+				
+				$('#msgend').click(function() {
+					var rev = $('#receiver').val();
+					var mbody = $('#msgbody').val();
+					
+					$.ajax({
+						type: "POST",
+						url: tmp + '/add/',
+						data: {
+							receiver: rev,
+							msgbody:mbody,
+							csrfmiddlewaretoken: '{{ csrf_token }}'
+						},
+						success: function(response, status) {
+							$('#msgbody').val('');
+						}
+					});
+					
+					return false;
+				});
+			});
+		</script>
+		<form id="form1" method="post" action="">
+		{% csrf_token %}
+			<select name="receiver" id="receiver">
+				{% for u in users %}
+					<option value="{{u}}">{{u}}</option>
+				{% endfor %}
+			</select>
+			<label>
+				Send a message:
+				<textarea rows="3" cols="20" name="msgbody" id="msgbody"></textarea>
+			</label>
+			<input type="button" name="submit" value="send" id="msgend"/>		
+		</form>
+	</div>
+	<li><a href="/medhis/{{p.id}}">Report</a></li>
+	<li><a href="{{ROOT}}/teleconsultation">{% trans "Teleconsultation with specialist" %}</a></li>
+{% endblock %}

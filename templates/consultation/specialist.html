@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Specialist' %}{% endblock title %}
+
+{% block content %}
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="page-header mt0">
+                        <h2>{% trans 'Specialist' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <table class="table table-bordered table-hover table-striped">
+                        <tr>
+                            <th>Name of Specialist</th>
+                            <th>Information</th>
+                            <th>Status</th>
+                            <th>Rate</th>
+                            <th></th>
+                        </tr>
+                        {% for s in specialists %}
+                            <tr>
+                                <td>{{ s.get_full_name }}</td>
+                                <td>{{ s.specialist.information }}</td>
+                                <td>{{ s.specialist.get_status_display }}</td>
+                                <td>{{ s.specialist.view_rate }}</td>
+                                <td>
+                                    {% if s.specialist.available %}
+                                    <a href="{{ s.specialist.get_absolute_url }}">Call</a>
+                                    {% else %}
+                                    &nbsp;
+                                    {% endif %}
+                                    {% comment %}
+                                    <div id="{{ s.get_full_name }}">
+                                       <script type="text/javascript">
+                                            Skype.ui({
+                                                name: "call",
+                                                element: "{{ s.get_full_name }}",
+                                                participants: "{{ s.skype_id }}",
+                                    	    video:"true",
+                                                listParticipants: "true"
+                                            });
+                                        </script>
+                                    </div>
+                                    {% endcomment %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/medicalhistory/add/">Add Medical History</a></div>
+
+
+<div class="allpatients">
+	{% if mh %}
+	<h2>Present Medical History</h2>
+	
+	{% for p in mh %}
+		<p>{% if p.tuberculosis %} Tuberculosis {% endif %}</p>
+		<p>{% if p.heart_disease %} Heart Disease {% endif %}</p>
+		<p>{% if p.chronical_renal_disease %} Chronical Renal Disease {% endif %}</p>
+		<p>{% if p.epilepsy %} Epilepsy {% endif %}</p>
+		<p>{% if p.diabetes_melitus %} Diabetes Melitus {% endif %}</p>
+		<p>{% if p.sexually_transmitted_infection %} Sexually Transmitted Infection {% endif %}</p>
+		<p>{% if p.hepatitis %} Hepatitis {% endif %}</p>
+		<p>{% if p.malaria %} Malaria {% endif %}</p>
+		<p>{% if p.sickle_cell_trait %} Sickle Cell Trait {% endif %}</p>
+		<p>{% if p.rhesus_d_antibodies %} Rhesus(D)Antibodies {% endif %}</p>
+		<p>{% if p.HIV_status_if_known %}  HIV(status if known) {% endif %}</p>
+		<p>{% if p.kidney_disease %} Kidney Disease {% endif %}</p>
+		<p>{% if p.liver_problems %} Liver Problems {% endif %}</p>
+		<p>{% if p.hypertension %} Hypertension {% endif %}</p>
+		<p>{% if p.urinary_tract_surgeries %} Urinary Tract Surgeries {% endif %}</p>
+		<p>{% if p.seizures %} Seizures {% endif %}</p>
+		<p>{% if p.pelvic_backinjuries %} Pelvic Back Injuries {% endif %}</p>
+		<p>{% if p.haemorrhage %} Haemorrhage {% endif %}</p>
+		<p>{% if p.others %} Others {% endif %}</p>
+	{% endfor %}
+	
+	<h2>Past Medical History</h2>
+	{% for p in premh %}
+		<p>{% if p.tuberculosis %} Tuberculosis {% endif %}</p>
+		<p>{% if p.heart_disease %} Heart Disease {% endif %}</p>
+		<p>{% if p.chronical_renal_disease %} Chronical Renal Disease {% endif %}</p>
+		<p>{% if p.epilepsy %} Epilepsy {% endif %}</p>
+		<p>{% if p.diabetes_melitus %} Diabetes Melitus {% endif %}</p>
+		<p>{% if p.sexually_transmitted_infection %} Sexually Transmitted Infection {% endif %}</p>
+		<p>{% if p.hepatitis %} Hepatitis {% endif %}</p>
+		<p>{% if p.malaria %} Malaria {% endif %}</p>
+		<p>{% if p.sickle_cell_trait %} Sickle Cell Trait {% endif %}</p>
+		<p>{% if p.rhesus_d_antibodies %} Rhesus(D)Antibodies {% endif %}</p>
+		<p>{% if p.HIV_status_if_known %}  HIV(status if known) {% endif %}</p>
+		<p>{% if p.kidney_disease %} Kidney Disease {% endif %}</p>
+		<p>{% if p.liver_problems %} Liver Problems {% endif %}</p>
+		<p>{% if p.hypertension %} Hypertension {% endif %}</p>
+		<p>{% if p.urinary_tract_surgeries %} Urinary Tract Surgeries {% endif %}</p>
+		<p>{% if p.seizures %} Seizures {% endif %}</p>
+		<p>{% if p.pelvic_backinjuries %} Pelvic Back Injuries {% endif %}</p>
+		<p>{% if p.haemorrhage %} Haemorrhage {% endif %}</p>
+		<p>{% if p.others %} Others {% endif %}</p>
+	{% endfor %}
+	
+	<h2>Family Medical History</h2>
+	<table width="100%">
+		<tr>
+			<th>Tuberculosis</th>
+			<th>Heart Disease</th>
+			<th>Chronical Renal Disease</th>
+			<th>Epilepsy</th>
+			<th>Diabetes Melitus</th>
+			<th>Sexually Transmitted Infection</th>
+			<th>Hepatitis</th>
+			<th>Malaria</th>
+			<th>Sickle Cell Trait</th>
+			<th>Rhesus(D)Antibodies</th>
+			<th>HIV(status if known)</th>
+			<th>Kidney Disease</th>
+			<th>Liver Problems</th>
+			<th>Hypertension</th>
+			<th>Urinary Tract Surgeries</th>
+			<th>Seizures</th>
+			<th>Pelvic Back Injuries</th>
+			<th>Haemorrhage</th>
+			<th>Others</th>
+		</tr>
+	{% for p in fmh %}
+		<tr>
+			<td>{{p.tuberculosis}}</td>
+			<td>{{p.heart_disease}}</td>
+			<td>{{p.chronical_renal_disease}}</td>
+			<td>{{p.epilepsy}}</td>
+			<td>{{p.diabetes_melitus}}</td>
+			<td>{{p.sexually_transmitted_infection}}</td>
+			<td>{{p.hepatitis }}</td>
+			<td>{{p.malaria}}</td>
+			<td>{{p.sickle_cell_trait}}</td>
+			<td>{{p.rhesus_d_antibodies}}</td>
+			<td>{{p.HIV_status_if_known}}</td>
+			<td>{{p.kidney_disease}}</td>
+			<td>{{p.liver_problems}}</td>
+			<td>{{p.hypertension }}</td>
+			<td>{{p.urinary_tract_surgeries}}</td>
+			<td>{{p.seizures}}</td>
+			<td>{{p.pelvic_backinjuries}}</td>
+			<td>{{p.haemorrhage}}</td>
+			<td>{{p.others}}</td>
+		</tr>	
+	{% endfor %}
+	</table>
+	
+	<h2>MenstrualHistory</h2>
+	<table width="100%">
+		<tr>
+			<th>Maternal Name</th>
+			<th>Day Of Visit</th>
+			<th>Menstrual Cycle</th>
+			<th>Regularity</th>
+			<th>Last Menstrual Periods</th>
+			<th>Previous Contraception</th>
+			<th>Expected Date Of Delivery</th>
+			<th>POA(by LMP)</th>
+		</tr>
+	{% for p in menh %}
+		<tr>
+			<td>{{p.pid}}</td>
+			<td>{{p.day_of_visit}}</td>
+			<td>{{p.menstrual_cycle}}</td>
+			<td>{{p.regularity}}</td>
+			<td>{{p.last_menstrual_periods}}</td>
+			<td>{{p.previous_contraception }}</td>
+			<td>{{p.expected_date_of_delivery }}</td>
+			<td>{{p.poa_by_lmp }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	
+	<h2>Obstetric History</h2>
+	<table width="100%">
+		<tr>
+			<th>Name</th>
+			<th>Check If You Have Been Pregnant</th>
+			<th>Check If You Have Been Miscarriages</th>
+		</tr>
+	
+	{% for p in oh %}
+		<tr>
+			<td>{{p.pid}}</td>
+			<td>{{p.check_if_you_have_never_been_pregnant}}</td>
+			<td>{{p.check_if_you_have_been_miscarriages}}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	
+	<h2>List of Previous Obstetric History</h2>
+	<table width="100%">
+		<tr>
+			<th>Maternal Name</th>
+			<th>Year</th>
+			<th>Sex</th>
+			<th>Birth Weight</th>
+			<th>Types Of Delivery</th>
+			<th>Length Of Pregnancy</th>
+			<th>Problems</th>
+			<th>Name Of Baby</th>
+			<th>Age Of Baby</th>
+			<th>Periods Of Exclusive Feeding</th>
+			<th>Obstetrical Operation</th>		
+		</tr>
+	
+	{% for p in preoh %}
+		<tr>
+			<td>{{p.pid}}</td>
+			<td>{{p.year}}</td>
+			<td>{{p.sex}}</td>
+			<td>{{p.birth_weight}}</td>
+			<td>{{p.types_of_delivery}}</td>
+			<td>{{p.length_of_pregnancy }}</td>
+			<td>{{p.problems}}</td>
+			<td>{{p.name_of_baby}}</td>
+			<td>{{p.age_of_baby}}</td>
+			<td>{{p.periods_of_exclusive_feeding}}</td>
+			<td>{{p.obstetrical_operation }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	
+	
+	<h2>List of Gynaecological History</h2>
+	<table width="100%">
+		<tr>
+			<th>Maternal Name</th>
+			<th>Method of birth control</th>
+			<th>Gynaecological Disease</th>
+			<th>Fibrocystic breasts</th>
+			<th>Ovarian cysts</th>
+			<th>Endometriosis</th>
+			<th>Uterine Fibroids</th>
+			<th>Others</th>
+			<th>Date Of Last Pap Smear</th>
+			<th>Result Pap Smear</th>			
+		</tr>
+	{% for p in gh %}
+		<tr>
+			<td>{{p.pid}}</td>
+			<td>{{p.method_of_birth_control}}</td>
+			<td>&nbsp</td>
+			<td>{{p.fibrocystic_breasts}}</td>
+			<td>{{p.ovarian_cysts}}</td>
+			<td>{{p.endometriosis }}</td>
+			<td>{{p.uterine_fibroids}}</td>
+			<td>{{p.others_please_state}}</td>
+			<td>{{p.date_of_last_pap_smear}}</td>
+			<td>{{p.result_pap_smear}}</td>		
+		</tr>
+	{% endfor %}
+	</table>
+	
+	
+	{% else %}
+		<p>There is no data in medical history, add more now.</p>
+	{% endif %}
+</div>
+
+
+{% endblock %}

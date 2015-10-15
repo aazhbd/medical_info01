@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div>
+{% if allps %}
+	{% for p in allps %}
+		{% for q in p %}
+		<p>Patient ID: {{q.id}}</p>
+		<p>Name: {{q.name}}</p>
+		<p>Date Registration: {{q.date_registration}}</p>
+		<p>Address: {{q.address}}</p>
+		
+		{% endfor %}
+	{% endfor %}
+{% endif %}
+</div>
+{% endblock %}

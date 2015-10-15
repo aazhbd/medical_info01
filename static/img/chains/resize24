@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "create dir 24"
+
+mkdir -p 24
+
+echo "resize all images and store in dir 24"
+
+mogrify -path 24/ -filter Lanczos -resize x24 *png
+
+echo "done"

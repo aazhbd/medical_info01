@@ -1,0 +1,85 @@
+{% load i18n %}
+
+<div id="form-wrapper">
+    {% include "_inner_message.html" %}
+    <table class="table table-normal">
+        <tr>
+            <th colspan="3"><h2><u>Visit:</u></h2></th>
+        </tr>
+        <tr>
+            <td>First visit: </td>
+            <td>{{ visit.first_visit }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Second visit: </td>
+            <td>{{ visit.second_visit }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Third visit: </td>
+            <td>{{ visit.third_visit }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Fourth visit: </td>
+            <td>{{ visit.fourth_visit }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Fifth visit: </td>
+            <td>{{ visit.fifth_visit }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Other visit: </td>
+            <td>{{ visit.other_visit }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-primary" id="add-visit" >{% trans "Add" %} &nbsp;&nbsp;&nbsp;<i class="icon-play icon-white"></i></button>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-normal">
+        <tr>
+            <th colspan="3"><h2><u>Hospital Admission:</u></h2></th>
+        </tr>
+        {% for admission in admissions %}
+            <tr>
+                <td></td>
+                <td><a href="{{ admission.get_absolute_url }}" class="admission-href">{{ admission.date_of_admission }}</a></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-primary" id="add-admission">{% trans "Add" %} &nbsp;&nbsp;&nbsp;<i class="icon-play icon-white"></i></button>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#add-visit').click(function(e) {
+            e.preventDefault();
+            $('#form-wrapper').load('{% url "patient_visit_add" patient_id %}');
+        });
+        $('#add-admission').click(function(e) {
+            e.preventDefault();
+            $('#form-wrapper').load('{% url "patient_admission_add" patient_id %}');
+        });
+        $('.admission-href').click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $('#form-wrapper').load(url);
+        });
+    </script>
+</div>
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/ultrasoundscanning/add/">Add Ultrasound scanning</a></div>
+
+
+
+<div class="allpatients">
+	{% if usscan %}
+	
+	{% for p in usscan %}
+		<p>Name: {{p.pid}}</p>
+		<p>Date: {{p.date}}</p>
+		<p>Gestation Age : {{p.gestation_age}}</p>
+		<p>Name Examiner : {{p.name_examiner}}</p>
+		<p>Saved Ultrasound Image : {{p.saved_ultrasound_image}}</p>
+		<p>CRL : {{p.crl}}</p>
+		<p>BPD : {{p.bpd}}</p>
+		<p>FL : {{p.fl}}</p>
+		<p>HC : {{p.hc}}</p>
+		<p>AC : {{p.ac}}</p>
+		<p>Amount Of Amniotic Fluid : {{p.amount_of_amniotic_fluid}}</p>
+		<p>Position Of The Placenta : {{p.position_of_the_placenta}}</p>
+		<p>Position Of The Baby : {{p.position_of_the_baby}}</p>
+
+		position_of_the_baby
+	{% endfor %}
+	
+	{% else %}
+		<p>No ultrasound scanning record available</p>
+	{% endif %}
+</div>
+
+{% endblock %}

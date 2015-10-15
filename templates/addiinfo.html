@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/additionalpatientinformation/add/">Add Additional Patient Info</a></div>
+
+
+
+<div class="allpatients">
+	{% if api %}
+	
+	{% for b in bpi %}
+		<p><span style="font-weight:bold;">Patient Info : {{b.name}}</span></p>
+		<p>Date of Birth: {{b.date_of_birth}}</p>
+	{% endfor %}
+	
+	{% for p in api %}
+		<p>Cigarettes : {{p.cigarettes}}{% if p.cigarettes %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>Alcohol : {{p.alcohol}}{% if p.alcohol %} <img height="20px;" src="{% get_static_prefix %}/images/important2.png" /> {% endif %}</p>
+		<p>Literate : {{p.literate}}</p>
+		<p>Educational Level : {{p.educational_level}}</p>
+		<p>Occupation : {{p.occupation}}</p>
+	{% endfor %}
+	
+	{% else %}
+		<p>There is no data in additional patient information</p>
+	{% endif %}
+</div>
+
+<div class="allpatients">
+<div style="float:right;"><a href="/admin/irpmemr/guardian/add/">Add Guardian Info</a></div>
+	{% if grd %}
+	
+	{% for p in grd %}
+		<p><span style="font-weight:bold;"> Guardian </span></p>
+		<p>Relation: {{p.relation}}</p>
+		<p>First name: {{p.first_name}}</p>
+		<p>Last name: {{p.last_name}}</p>
+		<p>Contact number: {{p.contact_number}}</p>
+		<p>Home Address: {{p.home_address}}</p>
+		<p>Job: {{p.job}}</p>
+		<p>Educational Level : {{p.educational_level}}</p>	
+	{% endfor %}
+	
+	
+	{% else %}
+		<p>There is no data in Guardian information</p>
+	{% endif %}
+	
+	
+</div>
+
+
+{% endblock %}

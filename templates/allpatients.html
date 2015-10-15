@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#setable').dataTable();
+    
+} );
+		
+</script>
+
+<div style="float:none;"><a href="/admin/irpmemr/basicpatientinformation/add/">Add Patient Info</a></div>
+{% if ph %}
+	<table cellpadding="0" cellspacing="0" border="0" class="display" width="100%" id="setable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Date of Birth</th>
+				<th>Address</th>
+				<th>Telephone Number</th>
+				<th>Marital Status</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Name</th>
+				<th>Date of Birth</th>
+				<th>Address</th>
+				<th>Telephone Number</th>
+				<th>Marital Status</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</tfoot>
+		<tbody>
+	{% for p in ph %}
+		<tr>
+			<td>{{p.name}}</td>
+			<td>{{p.date_of_birth}}</td>
+			<td>{{p.address}}</td>
+			<td>{{p.telephone_number}}</td>
+			<td>{{p.marital_status}}</td>
+			<td><a href="/addiinfo/{{p.id}}">Additional Details</a></td>
+			<td><a href="/medhis/{{p.id}}">History</a></td>
+			<td><a href="/routinecheckup/{{p.id}}">Routine Check Up</a></td>
+			<td><a href="/labtest/{{p.id}}">Laboratory Test</a></td>
+			<td><a href="/usscanning/{{p.id}}">Ultrasound Scanning</a></td>
+			<td><a href="/immunizationhis/{{p.id}}">Prescription</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+	{% else %}
+		<p>There is no data in basic patient info</p>
+	{% endif %}
+
+{% endblock %}

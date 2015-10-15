@@ -1,0 +1,24 @@
+{% load i18n %}
+<li{% if selected_page == "home" %} class="active"{% endif %}>
+    <a href="{% url 'home' %}">{% trans 'Home' %}</a>
+</li>
+{% if user.is_authenticated %}
+    {% if patient_id %}
+    <li{% if selected_page == 'patient' %} class="active"{% endif %}>
+        <a href="{% url 'patient_info' patient_id %}">{% trans 'Patient Information' %}</a>
+    </li>
+    {% else %}
+    <li{% if selected_page == 'patient' %} class="active"{% endif %}>
+        <a href="#">{% trans 'Patient Information' %}</a>
+    </li>
+    {% endif %}
+    <li{% if selected_page == 'consultation' %} class="active"{% endif %}>
+        <a href="{% url 'specialist' %}">{% trans 'Teleconsultation' %}</a>
+    </li>
+    <li{% if selected_page == 'notification' %} class="active"{% endif %}>
+        <a href="{% url 'notifications' %}">{% trans 'Notification' %}</a>
+    </li>
+    <li>
+        <a href="{% url 'account_logout' %}">{% trans 'Logout' %} ({{ user.username }})</a>
+    </li>
+{% endif %}

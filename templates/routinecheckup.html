@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div style="float:right;"><a href="/admin/irpmemr/routinecheckup/add/">Add Routine check up</a></div>
+
+
+
+<div class="allpatients">
+	{% if routinechck %}
+	{% for p in routinechck %}
+		<p><span style="font-weight:bold;">Name: {{p.pid}}</span></p>
+		<p><span style="font-weight:bold;">Visit: {{p.visit}}</span></p>
+		<p>Date : {{p.date}}</p>
+		<p>Name Of Examiner : {{p.name_of_examiner}}</p>
+		<p>Symptom Events : {{p.symptom_events}}</p>
+		<p>Abdominal Changes : {{p.abdominal_changes}}</p>
+		<p>Fetal Movement : {{p.fetal_movement}}</p>
+		
+	{% endfor %}
+	
+	{% else %}
+		<p>There is no routine check up</p>
+	{% endif %}
+</div>
+
+{% endblock %}

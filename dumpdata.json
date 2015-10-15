@@ -1,0 +1,256 @@
+[
+
+{
+    "pk": 1,
+    "model": "sites.site",
+    "fields": {
+        "domain": "irpm.com",
+        "name": "irpm.com"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.patientinformation",
+    "fields": {
+        "first_name": "Noraini",
+        "last_name": "Jalil",
+        "created": "2013-10-18T18:04:59.564Z",
+        "marital_status": "SG",
+        "telephone_number": "013-7564072",
+        "modified": "2013-10-18T18:32:41.095Z",
+        "date_of_birth": "2013-10-19",
+        "address": "Seri Kembangan",
+        "operator": 1,
+        "email": "ain_jalil88@yahoo.com"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.additionalpatientinformation",
+    "fields": {
+        "patient": 1,
+        "alcohol": "AL",
+        "created": "2013-10-18T18:06:22.758Z",
+        "literate": "SL",
+        "modified": "2013-10-18T18:06:22.758Z",
+        "toilet_facilities": "F",
+        "cigarettes": "US",
+        "other_harmful_substances": "Alcohol",
+        "educational_level": "PR",
+        "psychological_stress": "Mi",
+        "cooking_facilities": "Electricity",
+        "occupation": "Student"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.guardian",
+    "fields": {
+        "first_name": "Ali",
+        "last_name": "Ahmad",
+        "patient": 1,
+        "created": "2013-10-18T18:06:22.997Z",
+        "educational_level": "UN",
+        "modified": "2013-10-18T18:06:22.997Z",
+        "job": "Rubber Tapper",
+        "relation": "HS",
+        "contact_number": "013-4321980",
+        "home_address": "Seri Kembangan"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.pastmedicalhistory",
+    "fields": {
+        "tuberculosis": false,
+        "epilepsy": false,
+        "rhesus_d_antibodies": false,
+        "hypertension": false,
+        "chronical_renal_disease": false,
+        "pelvic_backinjuries": false,
+        "seizures": false,
+        "HIV_status_if_known": false,
+        "urinary_tract_surgeries": false,
+        "hepatitis": true,
+        "haemorrhage": false,
+        "sexually_transmitted_infection": false,
+        "patient": 1,
+        "malaria": false,
+        "liver_problems": false,
+        "heart_disease": false,
+        "sickle_cell_trait": true,
+        "others": "None",
+        "date": "2013-10-19",
+        "kidney_disease": false,
+        "diabetes_melitus": false,
+        "created": "2013-10-18T18:08:31.207Z",
+        "modified": "2013-10-18T18:08:31.207Z"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.presentmedicalhistory",
+    "fields": {
+        "tuberculosis": false,
+        "epilepsy": false,
+        "rhesus_d_antibodies": false,
+        "hypertension": false,
+        "chronical_renal_disease": true,
+        "pelvic_backinjuries": false,
+        "seizures": false,
+        "HIV_status_if_known": false,
+        "urinary_tract_surgeries": false,
+        "hepatitis": false,
+        "haemorrhage": false,
+        "sexually_transmitted_infection": false,
+        "patient": 1,
+        "malaria": false,
+        "liver_problems": false,
+        "heart_disease": true,
+        "sickle_cell_trait": false,
+        "others": "None",
+        "date": "2013-10-19",
+        "kidney_disease": false,
+        "diabetes_melitus": false,
+        "created": "2013-10-18T18:09:06.435Z",
+        "modified": "2013-10-18T18:09:06.435Z"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.familymedicalhistory",
+    "fields": {
+        "tuberculosis": false,
+        "epilepsy": false,
+        "rhesus_d_antibodies": false,
+        "hypertension": false,
+        "chronical_renal_disease": false,
+        "pelvic_backinjuries": false,
+        "seizures": false,
+        "HIV_status_if_known": false,
+        "urinary_tract_surgeries": false,
+        "hepatitis": false,
+        "haemorrhage": false,
+        "sexually_transmitted_infection": true,
+        "patient": 1,
+        "malaria": false,
+        "liver_problems": false,
+        "heart_disease": false,
+        "sickle_cell_trait": false,
+        "others": "",
+        "date": "2013-10-19",
+        "kidney_disease": false,
+        "diabetes_melitus": true,
+        "created": "2013-10-18T18:08:05.426Z",
+        "modified": "2013-10-18T18:11:20.647Z"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.menstrualhistory",
+    "fields": {
+        "last_menstrual_periods": "2013-10-19",
+        "day_of_visit": "2013-10-19",
+        "patient": 1,
+        "created": "2013-10-18T18:08:46.900Z",
+        "modified": "2013-10-18T18:18:53.441Z",
+        "poa_by_lmp": "43 weeks 2 days",
+        "menstrual_cycle": "30",
+        "expected_date_of_delivery": "2013-10-19"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.routinecheckup",
+    "fields": {
+        "uterine_height": "23",
+        "fetal_movement": "Normal",
+        "chest_and_heart_auscultation": "NR",
+        "patient": 1,
+        "weight": "23",
+        "created": "2013-10-18T18:13:07.720Z",
+        "symptom_events": "Bleeding",
+        "visit": "FT",
+        "modified": "2013-10-18T18:13:07.720Z",
+        "height": "30",
+        "blood_pressure": "BE",
+        "abdominal_changes": "AB",
+        "vaginal_examination": "Normal",
+        "date": "2013-10-19",
+        "name_of_examiner": "Cik Salmy"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.laboratorytest",
+    "fields": {
+        "patient": 1,
+        "created": "2013-10-18T18:13:56.358Z",
+        "hemoglobin": "A",
+        "blood_group": "B+",
+        "modified": "2013-10-18T18:13:56.358Z",
+        "urinalysis": "BE",
+        "serological_test_for_syphilis": "Positive",
+        "date": "2013-10-19"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.ultrasoundscanning",
+    "fields": {
+        "AC": "3",
+        "name_examiner": "Haemn",
+        "gestation_age": "13",
+        "created": "2013-10-18T18:17:01.940Z",
+        "HC": "5",
+        "modified": "2013-10-18T18:17:01.940Z",
+        "position_of_the_placenta": "Normal",
+        "saved_ultrasound_image": "",
+        "date": "2013-10-19",
+        "patient": 1,
+        "amount_of_amniotic_fluid": 32,
+        "FL": "4",
+        "position_of_the_baby": "Normal",
+        "CRL": "12",
+        "BPD": "13"
+    }
+},
+{
+    "pk": 1,
+    "model": "patient.prescription",
+    "fields": {
+        "date": "2013-10-19",
+        "patient": 1,
+        "modified": "2013-10-18T18:17:57.485Z",
+        "name_of_prescription": "Folic acid",
+        "created": "2013-10-18T18:17:51.269Z"
+    }
+},
+{
+    "pk": 1,
+    "model": "admission.patientvisit",
+    "fields": {
+        "first_visit": "2013-10-01T18:19:00Z",
+        "patient": 1,
+        "created": "2013-10-18T18:19:53.730Z",
+        "fifth_visit": null,
+        "modified": "2013-10-18T18:19:53.730Z",
+        "fourth_visit": null,
+        "second_visit": null,
+        "other_visit": null,
+        "third_visit": null
+    }
+},
+{
+    "pk": 1,
+    "model": "admission.hospitaladmission",
+    "fields": {
+        "date_of_discharge": "2013-10-18T18:20:00Z",
+        "patient": 1,
+        "created": "2013-10-18T18:20:04.632Z",
+        "modified": "2013-10-18T18:20:04.632Z",
+        "hospital_name": "Hospital Sultanah Zanariah",
+        "date_of_admission": "2013-10-18T18:20:00Z"
+    }
+}
+]

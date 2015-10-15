@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div id="form-wrapper">
+    {% include "_inner_message.html" %}
+    <table class="table table-hover table-normal">
+        {% for routine in routines %}
+            <tr>
+                <td></td>
+                <td><a href="{{ routine.get_absolute_url }}" class="routine-href">{{ routine.date }}</a></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-primary" id="add-routine">{% trans "Add" %} &nbsp;&nbsp;&nbsp;<i class="icon-play icon-white"></i></button>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#add-routine').click(function(e) {
+            e.preventDefault();
+            $('#form-wrapper').load('{% url "routine_checkup_add" patient_id %}');
+        });
+        $('.routine-href').click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $('#form-wrapper').load(url);
+        });
+    </script>
+</div>
+

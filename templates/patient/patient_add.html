@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Add New Patient' %}{% endblock title %}
+
+{% block content %}
+    <section id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="page-header mt0">
+                        <h2>{% trans 'Add New Patient' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <table class="table table-bordered table-hover table-striped">
+                        {% for f in form %}
+                            {% include '_table_horizontal_field.html' with field=f %}
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td class="text-center">
+                                <button type="submit" class="btn btn-inverse" value="save">{% trans "Save" %} &nbsp;<i class="icon-ok icon-white"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block bottom_javascript %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.simple-dtpicker.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('*[class=datepicker]').appendDtpicker({"closeOnSelected": true, "dateOnly": true});
+        });
+    </script>
+{% endblock bottom_javascript %}
